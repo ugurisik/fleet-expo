@@ -232,7 +232,11 @@ export default function Dashboard() {
               alignItems: 'center',
               padding: 10,
               borderRadius: 5
-            }}>
+            }}
+            onPress={() => {
+              router.push('/Imports/Components/Pages/Drivesheet')
+            }}
+            >
               <Icon name='lock' size={20} color='white' />
               <Text style={{ color: colors.white, fontWeight: style.fontWeight }}>Offene Fahrten bearbeiten</Text>
             </TouchableOpacity>
@@ -251,6 +255,11 @@ export default function Dashboard() {
             {data && data.map((item, index) => {
               return (
                 <React.Fragment key={index} >
+                  <TouchableOpacity onPress = {() => { router.push('/Imports/Components/Pages/Tod' , {
+                    params : {
+                      title : item.title
+                    }
+                  }) }}>
                   <View style={{ display: "flex", flexDirection: 'row', width: '100%', gap: 15, alignItems: 'center' }}>
                     <View style={style.IconKutu}>
                       <Icon name={item.icon} size={20} color="white" />
@@ -264,6 +273,7 @@ export default function Dashboard() {
                     </View>
                   </View>
                   <Cizgi />
+                  </TouchableOpacity>
                 </React.Fragment>
               )
             })}

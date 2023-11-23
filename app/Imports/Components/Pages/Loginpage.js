@@ -7,22 +7,18 @@ import usePlatform from "../../Hooks/usePlatform";
 import { router } from "expo-router";
 
 export default function Loginpage() {
-    const platform = usePlatform();
+    
 
     const handleLogin = () => {
         router.push('/Imports/Components/Pages/Dashboard');
     }
-
-    useEffect(() => {
-        console.log(123);
-    }, [])
 
     return (
         <>
             <View style={{
                 marginLeft: style.RootMarginLeft,
                 marginRight: style.RootMarginRight,
-                marginTop: platform == 'ios' ? 50 : 50,
+                marginTop: 50,
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
@@ -36,9 +32,8 @@ export default function Loginpage() {
                     justifyContent: "center",
                     alignItems: 'center'
                 }}>
-                    <Image style={{ width: 100, height: 100, }} source={{ uri: 'https://safarigmbh.de/wp-content/uploads/2023/06/cropped-gps-icon-192x192.png' }} />
+                    <Image style={{ width: '100%', height: 60, }} source={require('../../../../assets/fleetlogo.png')} />
                 </View>
-
                 <View style={{
                     gap: 10,
                 }}>
@@ -71,15 +66,15 @@ export default function Loginpage() {
                         <TouchableOpacity style={{
                             backgroundColor: colors.primary,
                             paddingVertical: 20,
-                            borderRadius: 10,
+                            borderRadius: 5,
                             width: "100%",
                             shadowColor: "#000",
                             shadowOffset: {
                                 width: 0,
-                                height: 10,
+                                height: 5,
                             },
-                            shadowOpacity: 0.51,
-                            shadowRadius: 13.16,
+                            shadowOpacity: 0.30,
+                            shadowRadius: 5.16,
                             elevation: 20,
                         }}
                             onPress={() => { handleLogin() }}

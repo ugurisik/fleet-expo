@@ -32,7 +32,7 @@ export default function Settings() {
                     justifyContent: "center",
                     alignItems: 'center'
                 }}>
-                    <Image style={{ width: 100, height: 100, }} source={{ uri: 'https://safarigmbh.de/wp-content/uploads/2023/06/cropped-gps-icon-192x192.png' }} />
+                    <Image style={{ width: '100%', height: 60, }} source={require('../../../../assets/fleetlogo.png')} />
                 </View>
                 <View style={{
                     display: "flex",

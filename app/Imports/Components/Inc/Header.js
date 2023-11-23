@@ -7,8 +7,12 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import usePlatform from "../../Hooks/usePlatform";
 import { Link, router } from "expo-router";
 
+
+
 export default function Header({ navigation, title, subtitle, icon, subicons }) {
-    const platform = usePlatform();
+    
+    
+
     return (
         <>
             <View style={{
@@ -25,7 +29,7 @@ export default function Header({ navigation, title, subtitle, icon, subicons }) 
                     justifyContent: 'flex-start',
                     alignItems: 'center',
                 }}>
-                    <TouchableOpacity onPress = {() => { router.back(); }} >
+                    <TouchableOpacity onPress={() => { router.back(); }} >
                         <Icon size={30} name={icon && icon} color='#fff' />
                     </TouchableOpacity>
 
@@ -49,9 +53,16 @@ export default function Header({ navigation, title, subtitle, icon, subicons }) 
                                 return null;
                             }
                             return (
-                                <TouchableOpacity key={index}>
-                                    <Icon size={30} name={item.icon} color='#fff' />
-                                </TouchableOpacity>
+                                item.isClickable ?
+                                    <TouchableOpacity key={index} onPress={() => {
+                                        setHandleEventState(item.event);
+                                    }} >
+                                        <Icon size={30} name={item.icon} color='#fff' />
+                                    </TouchableOpacity>
+                                    :
+                                    <View key={index}>
+                                        <Icon size={30} name={item.icon} color='#fff' />
+                                    </View>
                             );
                         })}</View>
 
