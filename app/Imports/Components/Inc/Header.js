@@ -10,8 +10,8 @@ import { Link, router } from "expo-router";
 
 
 export default function Header({ navigation, title, subtitle, icon, subicons }) {
-    
-    
+
+
 
     return (
         <>
@@ -38,7 +38,7 @@ export default function Header({ navigation, title, subtitle, icon, subicons }) 
                         width: '65%',
                     }}>
                         <Text style={[style.Title]}>{title && title}</Text>
-                        {subtitle && <Text style={[style.SubTitle]}>{subtitle && subtitle}</Text>}
+                        {subtitle && <Text style={[style.SubTitle , { color : '#98c8ff'}]}>{subtitle && subtitle}</Text>}
                     </View>
 
 

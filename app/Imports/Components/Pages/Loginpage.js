@@ -80,8 +80,7 @@ export default function Loginpage() {
                             onPress={() => { handleLogin() }}
                         >
                             <Text style={{
-                                fontSize: style.fontSize,
-                                fontWeight: style.fontWeight,
+                                fontSize: 16,
                                 textAlign: "center",
                                 color: colors.white,
                             }}>Einloggen</Text>
@@ -92,7 +91,8 @@ export default function Loginpage() {
                         <TouchableOpacity>
                             <Text style={{
                                 color: colors.primary,
-                                textAlign: "center"
+                                textAlign: "center",
+                                fontSize:14
                             }}>
                                 Passwort vergessen?
                             </Text>

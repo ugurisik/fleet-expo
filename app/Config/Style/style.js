@@ -12,8 +12,8 @@ let style = new StyleSheet.create({
         fontSize: 14,
         textAlign: 'left',
     },
-    RootMarginLeft : 20,
-    RootMarginRight: 20,
+    RootMarginLeft : 40,
+    RootMarginRight: 40,
     fontWeight : 'bold',
     fontSize : 20,
     ItemDate : {

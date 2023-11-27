@@ -7,29 +7,10 @@ import usePlatform from "../../Hooks/usePlatform";
 import Header from "../Inc/Header";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-import { Marker } from 'react-native-maps';
+import { Marker, Polyline } from 'react-native-maps';
 
 export default function Tod() {
-    const navigation = 1;
-    const data = [
-        {
-            'icon': 'biohazard',
-            'title': 'Sicherheitsbericht',
-            'subtitle': 'am 13.11.2023 um 12:00 Uhr',
-            'km': '66'
-        },
-        {
-            'icon': 'car',
-            'title': 'Sicherheitsbericht',
-            'subtitle': 'am 13.11.2023 um 12:00 Uhr',
-            'km': '66'
-        }, {
-            'icon': 'shield-alt',
-            'title': 'Sicherheitsbericht',
-            'subtitle': 'am 13.11.2023 um 12:00 Uhr',
-            'km': '66'
-        }
-    ]
+
     let mapStyle =
         [
             {
@@ -129,7 +110,7 @@ export default function Tod() {
 
     return (
         <>
-            <Header navigation={1} title='Fahrtenbuch' icon='arrow-left' />
+            <Header title='Monday, 11.11.2023' icon='arrow-left' />
             <View style={{
                 display: "flex",
                 width: "100%",
@@ -173,8 +154,9 @@ export default function Tod() {
                     }}>
                         <Text style={{
                             fontWeight: "bold",
+                            color: '#575757'
                         }}>14:02</Text>
-                        <Text>Adres A, Postakodu 123 Sehir X</Text>
+                        <Text style={{ color: '#808080' }}>Adres A, Postakodu 123 Sehir X</Text>
                     </View>
                 </View>
                 <View style={{
@@ -191,8 +173,6 @@ export default function Tod() {
 
                     <View style={{
                         width: "75%",
-                        borderBottomWidth: 1,
-                        borderBottomColor: "gray",
                         display: "flex",
                         flexDirection: "row",
                         gap: 20,
@@ -202,8 +182,9 @@ export default function Tod() {
                     }}>
                         <Text style={{
                             fontWeight: "bold",
+                            color: '#575757'
                         }}>14:02</Text>
-                        <Text>Adres A, Postakodu 123 Sehir X</Text>
+                        <Text style={{ color: '#808080' }}>Adres A, Postakodu 123 Sehir X</Text>
                     </View>
                 </View>
             </View>
@@ -219,14 +200,37 @@ export default function Tod() {
                 }}
             >
 
+
                 <Marker
                     coordinate={{
                         latitude: 38.42090290578521,
                         longitude: 27.1319021103306,
+                    }}>
+                    <Icon name={'pin-drop'} size={35} color={colors.primary} />
+                </Marker>
+
+                <Polyline coordinates={[{
+                    latitude: 38.42090290578521,
+                    longitude: 27.1319021103306,
+                },
+                {
+                    latitude: 38.4090290578521,
+                    longitude: 27.1319021103306,
+                }]}
+                    strokeColor={colors.primary}
+                    strokeWidth={6}
+                />
+
+                <Marker
+                    coordinate={{
+                        latitude: 38.4090290578521,
+                        longitude: 27.1319021103306,
                     }}
                 >
+                    <Icon name={'wrong-location'} size={35} color={colors.primary} />
                 </Marker>
-            </MapView>
+
+            </MapView >
             <View style={{
                 width: "100%",
                 // height: "100%",
@@ -271,13 +275,13 @@ export default function Tod() {
                             <Icon style={{}} name='security' size={30} color="#fff" />
                         </View>
 
-                        <View style = {{ width : '60%'}}>
-                            <Text>Betriebsfahrt</Text>
-                            <Text>am 12.11.2023 um 18:54 uhr</Text>
+                        <View style={{ width: '60%' }}>
+                            <Text style={{ fontSize: 16, marginBottom: 5, fontWeight: 'bold', color: '#505050' }}>Betriebsfahrt</Text>
+                            <Text style={{ fontSize: 14, color: '#616161' }}>am 12.11.2023 um 18:54 uhr</Text>
                         </View>
 
                         <View>
-                            <Text>16 KM</Text>
+                            <Text style={{ color: '#616161' }}>16 KM</Text>
                         </View>
                     </View>
                 </View>
@@ -295,7 +299,7 @@ export default function Tod() {
                         alignItems: "center",
                         marginTop: 20,
                         borderTopWidth: 1,
-                        borderTopColor: "gray",
+                        borderTopColor: "#eaeaeb",
                     }}>
                         <Text style={{
                             fontWeight: "bold",

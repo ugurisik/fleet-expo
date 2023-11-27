@@ -7,18 +7,21 @@ import usePlatform from "../../Hooks/usePlatform";
 import Header from "../Inc/Header";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Fahtrenbuch2 from "../Inc/Fahtrenbuch2";
+import axios from 'axios';
 
 export default function Fahrtenbuch() {
-    const platform = usePlatform();
+
+
+
 
     return (
         <>
             <Header title={'Fahrtenbuch'} icon={'arrow-left'} />
             <View style={{
-                marginLeft: style.RootMarginLeft,
-                marginRight: style.RootMarginRight,
+                marginLeft: 15,
+                marginRight: 15,
                 marginTop: 25,
-                gap : 15
+                gap: 15
             }}>
                 <Fahtrenbuch2 props={{
                     background: 'red',
@@ -29,7 +32,7 @@ export default function Fahrtenbuch() {
                 }} />
 
                 <Fahtrenbuch2 props={{
-                    background: 'red',
+                    background: 'green',
                     icon: 'marker',
                     title: 'Privfahrt 2 2',
                     subtitle: 'am 13.11.2023 um 11.24 Uhr',
