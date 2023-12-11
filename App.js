@@ -14,12 +14,19 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import { usePushNotifications } from './app/Imports/Hooks/usePushNotifications';
+
 
 import { Link } from 'expo-router';
 
 function App() {
 
+  const { expoPushToken , notification } = usePushNotifications();
 
+  useEffect(() => {
+    console.log(1);
+    console.log(expoPushToken);
+  }, [expoPushToken]);
 
   return (
     <>

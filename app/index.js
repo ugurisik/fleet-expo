@@ -1,36 +1,72 @@
-import React, { createContext, useState, useEffect } from 'react';
-import { Redirect } from 'expo-router';
-import { View } from 'react-native';
-import Mischfahrt from './Imports/Components/Pages/Mischfahrt';
-import { StatusBar } from 'expo-status-bar';
-import LottieView from 'lottie-react-native';
+import React, { createContext, useState, useEffect } from "react";
+import { Redirect, useRouter } from "expo-router";
+import { View, Text } from "react-native";
+import Mischfahrt from "./Imports/Components/Pages/Mischfahrt";
+import { StatusBar } from "expo-status-bar";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { usePushNotifications } from "./Imports/Hooks/usePushNotifications";
 
 export const AuthContext = createContext();
 
 export default function App() {
-    const [user, setUser] = useState(false);
+  usePushNotifications();
 
-    // useEffect(() => {
-    //     const checkUser = () => {
-    //         setUser(true);
-    //     }
+  const router = useRouter();
 
-    //     checkUser();
-    // })
+  const [user, setUser] = useState();
 
-    return (
-        // <View style={{ flex: 1, alignItems: 'center', margin: 0 }}>
-        //     <LottieView
-        //         source={require('./Imports/Components/Animations/Loading.json')}
-        //         autoPlay
-        //         loop={true}
-        //         resizeMode='cover'
-        //     />
-        // </View>
+  const generateDeviceId = async () => {
+    let device_id = await AsyncStorage.getItem("device_id");
 
-        <AuthContext.Provider value={{ user, setUser }}>
-            <StatusBar hidden />
-            {user ? <Redirect href="Imports/Components/Pages/Dashboard" /> : <Redirect href="Imports/Components/Pages/Loginpage" />}
-        </AuthContext.Provider>
-    );
+    if (!device_id) {
+      let id =
+        Math.random().toString(36).substring(2, 15) +
+        "-" +
+        Math.random().toString(36).substring(2, 15) +
+        "-" +
+        Math.random().toString(36).substring(2, 15) +
+        "-" +
+        Math.random().toString(36).substring(2, 15);
+
+      try {
+        await AsyncStorage.setItem("device_id", id);
+      } catch (error) {
+        throw error;
+      }
+    }
+  };
+
+  const getUser = async () => {
+    try {
+      let user = await AsyncStorage.getItem("isLogged");
+
+      if (user) {
+        let token = await AsyncStorage.getItem("token");
+        if (!token) {
+          return router.push("Imports/Components/Pages/Loginpage");
+        }
+
+        console.log('Login with token: ', token);
+
+        router.push("Imports/Components/Pages/Dashboard");
+      } else {
+        router.push("Imports/Components/Pages/Loginpage");
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  useEffect(() => {
+    // AsyncStorage.removeItem("token");
+    // AsyncStorage.removeItem("isLogged");
+
+    generateDeviceId();
+    getUser();
+  }, []);
+
+  return (
+    <AuthContext.Provider value={{ user, setUser }}>
+    </AuthContext.Provider>
+  );
 }
